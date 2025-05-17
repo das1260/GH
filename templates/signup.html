@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        input[type="email"], input[type="password"] {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        input::placeholder {
+            color: #aaa;
+        }
+        button {
+            background: #2575fc;
+            color: #fff;
+            font-size: 1em;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #1b5fbd;
+        }
+        .form-footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #ddd;
+        }
+        .form-footer a {
+            color: #fff;
+            text-decoration: underline;
+        }
+        .messages {
+            margin-bottom: 20px;
+        }
+        .alert {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            text-align: left;
+        }
+        .alert-success {
+            background: #28a745;
+            color: #fff;
+        }
+        .alert-danger {
+            background: #dc3545;
+            color: #fff;
+        }
+        .alert-info {
+            background: #17a2b8;
+            color: #fff;
+        }
+        .alert-warning {
+            background: #ffc107;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <form method="post">
+            {% csrf_token %}
+            <input type="email" name="email" placeholder="Email" required><br>
+            <input type="password" name="password" placeholder="Password" required><br>
+            <button type="submit">Sign Up</button>
+        </form>
+        <div class="form-footer">
+            <a href="{% url 'login' %}">Log In</a> if you already have an account.
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GhanAnanD.in</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'images/GhanAnand-favicon-B954.ico' %}" type="image/x-icon">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"> -->
+    <link rel="stylesheet" href="/static/css/flatpickr.css">
+    <!-- For the country dropdown search -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/style.css\">
+    <script src="/static/js/script.js\" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="/static/js/select2.js" defer></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script> -->
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        h2{
+            color: black;
+        }
+
+        .boxcard {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f1f1f1;
+            margin: 5px;
+            padding: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+
+        }
+
+        a label {
+            font-weight: 600;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fafafa;
+            transition: all 0.3s ease-in-out;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #007bff;
+            outline: none;
+            background-color: #fff;
+        }
+
+        .container2 {
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            padding: 30px;
+            box-sizing: border-box;
+            align-items: center;
+            align-content: stretch;
+
+        }
+
+
+
+        .container_name {
+
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+
+        }
+
+        .container_gender,
+        .container_date,
+        .container_time {
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+            padding: 10px;
+        }
+
+        .container_country,
+        .container_country_code {
+
+            display: flex;
+            flex-direction: column;
+            width: 170px;
+            padding: 10px;
+
+        }
+
+        .container_place,
+        .container_whatapp {
+
+            display: flex;
+            flex-direction: column;
+            width: 70%;
+            padding: 10px;
+
+        }
+
+
+
+
+
+        .container_r2 {
+
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+        }
+
+        .container_r3,
+        .container_r4 {
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+            flex-wrap: wrap;
+
+
+        }
+
+
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        #edit-btn {
+            background-color: #007bff;
+            color: white;
+        }
+
+        #edit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        #update-btn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        #update-btn:hover {
+            background-color: #1e7e34;
+        }
+
+        #cancel-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        #cancel-btn:hover {
+            background-color: #a71d2a;
+        }
+        p1{
+            color: rgb(255, 0, 0);
+        }
+
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container2 {
+                padding: 20px;
+            }
+
+            .container_r2,
+            .container_r3,
+            .container_r4 {
+                flex-direction: column;
+            }
+
+            .container_gender,
+            .container_date,
+            .container_time,
+            .container_country,
+            .container_country_code,
+            .container_place,
+            .container_whatapp {
+                width: 100%;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    
+
+    <!-- <header class="header">
+        
+            
+    </header> -->
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- Header Section -->
+        {%include 'header.html'%}
+
+        <script>
+            function toggleMenu() {
+                document.querySelector('.navbar').classList.toggle('active');
+            }
+        </script>
+    </section>
+    <div class="boxcard">
+        <div class="container2">
+            {% if message %}
+                <div class="message"><p1>{{ message }}</p1></div>
+        {% endif %}
+            <div>
+                <h2>Profile Page</h2>
+            </div>
+            <form id="profile-form" action="{% url  'profile'%}" method="POST">
+                {% csrf_token %}
+                <div>
+                    <div class="container_name">
+                        <label for="name">Name: <span style="color: red;">*</span></label>
+                        <input type="text" id="name" name="name" placeholder="Enter your Full Name" value="{{profile.full_name}}"
+                            style="text-transform:uppercase"  required>
+                    </div>
+                    <div class="container_r2">
+                        <div class="container_gender">
+                            <label for="gender">Gender: <span style="color: red;">*</span></label>
+                            <select id="gender" name="gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="male" {% if profile.gender == "male" %}selected{% endif %}>Male</option>
+                                <option value="female" {% if profile.gender == "female" %}selected{% endif %}>Female</option>
+                            </select>
+                        </div>
+                        <div class="container_date">
+
+                            <label for="dob">Date of Birth: <span style="color: red;">*</span></label>
+                            <input type="date" id="dob" name="dob" value="{{date_of_birth}}"  required>
+
+                        </div>
+
+                        <div class="container_time">
+                            <label for="time">Time of Birth: <span style="color: red;">*</span></label>
+                            <input type="time" id="time" name="time" value="{{time_of_birth}}"  required>
+                        </div>
+                    </div>
+
+                    <div class="container_r3">
+                        <div class="container_country">
+                            <label for="country">Country of Birth: <span style="color: red;">*</span></label>
+                            <select id="country" name="country" required>
+                                <option value="">Select Country</option>
+                                <option value="USA" {% if profile.Country_of_Birth == "USA" %}selected{% endif %} >United States</option>
+                                <option value="India" {% if profile.Country_of_Birth == "India" %}selected{% endif %} >India</option>
+                                <option value="UK" {% if profile.Country_of_Birth == "UK" %}selected{% endif %} >United Kingdom</option>
+                                <option value="Canada" {% if profile.Country_of_Birth == "Canada" %}selected{% endif %} >Canada</option>
+                            </select>
+                        </div>
+                        <div class="container_place">
+                            <label for="birthplace">Place of Birth: <span style="color: red;">*</span></label>
+                            <input type="text" id="birthplace" name="birthplace" placeholder="Enter your birth place" value="{{profile.Place_of_Birth}}"
+                                style="text-transform:uppercase" required>
+                        </div>
+
+                    </div>
+
+                    <div class="container_r4">
+                        <div class="container_country_code">
+                            <label for="whatsapp">Country Code: <span style="color: red;">*</span></label>
+                            <select id="countrycode" name="countrycode" required>
+                                <option value="+1" {% if profile.country_code == "+1" %}selected{% endif %}>🇺🇸 +1</option>
+                                <option value="+91" {% if profile.country_code == "+91" %}selected{% endif %}>🇮🇳 +91</option>
+                                <option value="+44" {% if profile.country_code == "+44" %}selected{% endif %}>🇬🇧 +44</option>
+                                <option value="+61" {% if profile.country_code == "+61" %}selected{% endif %}>🇦🇺 +61</option>
+                                <option value="+81" {% if profile.country_code == "+81" %}selected{% endif %}>🇯🇵 +81</option>
+                                <option value="+971" {% if profile.country_code == "+971" %}selected{% endif %}>🇦🇪 +971</option>
+                                <option value="+33" {% if profile.country_code == "+33" %}selected{% endif %}>🇫🇷 +33</option>
+                                <option value="+49" {% if profile.country_code == "+49" %}selected{% endif %}>🇩🇪 +49</option>
+                            </select>
+                        </div>
+                        <div class="container_whatapp">
+                            <label for="whatsapp">WhatsApp Number: <span style="color: red;">*</span></label>
+                            <input type="tel" id="whatsapp" name="whatsapp" placeholder="Enter WhatsApp Number" value="{{profile.whatsapp}}"
+                                required maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+
+                        </div>
+                        <div class="button-dev">
+                            <div class="buttons">
+                                <button type="button" id="edit-btn" style="display: none;">Edit</button>
+                                <button type="submit" id="update-btn" >Update</button>
+                                <button type="button" id="cancel-btn" style="display: none;">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+        </div>
+        </form>
+    </div>
+
+
+
+    </div>
+
+
+
+
+    <script>
+
+
+function validateWhatsAppNumber(number) {
+        const regex = /^[0-9]{10}$/; // Ensures exactly 10 digits
+        return regex.test(number);
+    }
+
+
+        document.getElementById("edit-btn").addEventListener("click", function () {
+            let inputs = document.querySelectorAll("input, select");
+            inputs.forEach(input => input.disabled = false);
+            document.getElementById("edit-btn").style.display = "none";
+            document.getElementById("update-btn").style.display = "inline-block";
+            document.getElementById("cancel-btn").style.display = "inline-block";
+        });
+
+        document.getElementById("cancel-btn").addEventListener("click", function () {
+            let inputs = document.querySelectorAll("input, select");
+            inputs.forEach(input => input.disabled = true);
+            document.getElementById("edit-btn").style.display = "inline-block";
+            document.getElementById("update-btn").style.display = "none";
+            document.getElementById("cancel-btn").style.display = "none";
+        });
+
+
+
+        flatpickr("#time", {
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "h:i K", // 12-hour format
+            time_24hr: false
+        });
+
+        flatpickr("#dob", {
+            dateFormat: "d-m-Y", // Format: Dec. 2, 1999
+            allowInput: true
+        });
+
+        $(document).ready(function () {
+            $('#country').select2({
+                placeholder: "Select Country",
+                allowClear: true
+            });
+        });
+
+
+        function validateWhatsAppNumber(number) {
+            const regex = /^\+?[1-9]\d{1,14}$/;
+            return regex.test(number);
+        }
+        
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+    <!-- Footer Section -->
+    {% include 'footer.html' %}
+</body>
+
+</html>

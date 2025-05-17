@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GhanAnanD.in</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'images/GhanAnand-favicon-B954.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="/static/css/style.css\">
+    <style>
+       
+
+
+    </style>
+    <script src="/static/js/script.js\" defer></script>
+</head>
+<body>
+    
+    <!-- <header class="header">
+        
+            
+    </header> -->
+
+
+    <!-- Hero Section -->
+    <section class="hero" style="background: url('{% static 'images/hero-backgroundv1.jpg' %}') no-repeat center center / cover;">
+        <!-- Header Section -->
+
+        <nav class="navbar">
+            <img src="{% static 'images/Ghananand_Logo_H9.png' %}">
+            <div class="hamburger" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+             
+            </div>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#consultation">Consultation</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+            </ul>
+        </nav>
+    
+        <script>
+            function toggleMenu() {
+                document.querySelector('.navbar').classList.toggle('active');
+            }
+        </script>
+
+    
+    </section>
+    <h1>Payment Successful</h1>
+<p>Payment ID: {{ payment.razorpay_payment_id }}</p>
+<p>Slot Booked Successfully!</p>
+
+
+
+    
+
+    
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#consultation">Consultation</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="contact-info">
+                <p>Email: info@ghananand.in</p>
+                <p>Phone: +91-1234567890</p>
+                <p>Address: City, State, Country</p>
+            </div>
+            <div class="social-media">
+                <a href="#"><img src="{% static 'images/instagram-icon.png' %}" alt="Instagram"></a>
+                <a href="#"><img src="{% static 'images/facebook-icon.png' %}" alt="Facebook"></a>
+                <a href="#"><img src="{% static 'images/linkedin-icon.png' %}" alt="LinkedIn"></a>
+            </div>
+            <p>© 2025 GHANANAND.IN. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

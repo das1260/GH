@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GhanAnanD.in</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'images/GhanAnand-favicon-B954.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+  var calendarEl = document.getElementById('calendar');
+
+  var resources = [
+    { id: 'a', title: 'Booking' },
+  ];
+
+  function fetchBookingData(start, end) {
+    let startDate = start.toISOString().split('T')[0];
+    let endDate = end.toISOString().split('T')[0];
+
+    return fetch("{% url 'data_api' %}")
+      .then(response => response.json())
+      .then(data => data.bookings)
+      .catch(error => {
+        console.error('Error fetching booking data:', error);
+        return [];
+      });
+  }
+
+  function fetchBlockBookingData() {
+    return fetch("{% url 'data_api2' %}")
+      .then(response => response.json())
+      .then(data => {
+        let blockBookings = [];
+        let days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+        let today = new Date();
+
+        days.forEach((day, index) => {
+          let booking = data.bookings.find(b => b[day] === true);
+          if (booking) {
+            let startTime = booking.start;
+            let endTime = booking.end;
+            let currentDate = new Date(today);
+            currentDate.setDate(today.getDate() + ((index - today.getDay() + 7) % 7));
+
+            while (currentDate < new Date(today.getFullYear() + 1, 0, 1)) {
+              let dateStr = currentDate.toISOString().split('T')[0];
+              blockBookings.push({
+                title: 'Not Available',
+                start: `${dateStr}T${convertTo24Hour(startTime)}`,
+                end: `${dateStr}T${convertTo24Hour(endTime)}`,
+                resourceId: 'a',
+                color: 'red'
+              });
+              currentDate.setDate(currentDate.getDate() + 7);
+            }
+          }
+        });
+        return blockBookings;
+      })
+      .catch(error => {
+        console.error('Error fetching block booking data:', error);
+        return [];
+      });
+  }
+
+  function convertTo24Hour(time) {
+    let [hours, minutes, period] = time.match(/(\d+):(\d+)([APM]+)/).slice(1);
+    if (period === 'PM' && hours !== '12') hours = String(+hours + 12);
+    if (period === 'AM' && hours === '12') hours = '00';
+    return `${hours.padStart(2, '0')}:${minutes}:00`;
+  }
+
+  function calculateCalendarHeight() {
+    const baseHeight = 100;
+    const rowHeight = 50;
+    return baseHeight + (resources.length * rowHeight);
+  }
+
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    timeZone: 'UTC',
+    initialView: 'resourceTimelineDay',
+    headerToolbar: {
+      left: 'prev,next',
+      center: 'title',
+      right: null
+    },
+    editable: false,
+    resourceAreaHeaderContent: 'Booking',
+    resources: resources,
+    height: calculateCalendarHeight(),
+
+    events: function(info, successCallback) {
+      let start = new Date(info.startStr);
+      let end = new Date(info.endStr);
+
+      Promise.all([fetchBookingData(start, end), fetchBlockBookingData()])
+        .then(([events, blockEvents]) => {
+          successCallback([...events, ...blockEvents]);
+        });
+    }
+  });
+
+  calendar.render();
+});
+
+      </script>
+
+</head>
+<body>
+    
+    <!-- <header class="header">
+        
+            
+    </header> -->
+
+
+    <!-- Hero Section -->
+    <section class="hero" style="background: url('{% static 'images/hero-backgroundv1.jpg' %}') no-repeat center center / cover;">
+        <!-- Header Section -->
+
+        <nav class="navbar">
+            <img src="{% static 'images/Ghananand_Logo_H9.png' %}">
+            <div class="hamburger" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+             
+            </div>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#consultation">Consultation</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                {% if user %}
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+                {% endif %}
+                
+            </ul>
+        </nav>
+    
+        <script>
+            function toggleMenu() {
+                document.querySelector('.navbar').classList.toggle('active');
+            }
+        </script>
+
+    
+    
+
+    <div class="bookings">
+
+
+{% if error %}
+<p style="color: red;">{{ error }}</p>
+{% endif %}
+
+<h2>Available and Booked Slots</h2>
+{% if default_time %}
+<p>The next available slot starts at: {{ default_time }}</p>
+{% endif %}
+
+<h2>Book a New Slot</h2>
+<form method="POST" action="">
+    {% csrf_token %}
+    <label for="slot_time">Select Start Time:</label>
+    <input type="datetime-local" id="slot_time" name="slot_time" required>
+
+    <br>
+    <label for="duration">Duration (in minutes):</label>
+    <input type="number" id="duration" name="duration" value="60" min="30" required>
+    <br>
+    <button type="submit">Book Slot</button>
+</form>
+
+
+  <h2>Calendar</h2>
+<div id='calendar'></div>
+</div>
+</section>
+
+
+    
+
+    
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#consultation">Consultation</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="contact-info">
+                <p>Email: info@ghananand.in</p>
+                <p>Phone: +91-1234567890</p>
+                <p>Address: City, State, Country</p>
+            </div>
+            <div class="social-media">
+                <a href="#"><img src="{% static 'images/instagram-icon.png' %}" alt="Instagram"></a>
+                <a href="#"><img src="{% static 'images/facebook-icon.png' %}" alt="Facebook"></a>
+                <a href="#"><img src="{% static 'images/linkedin-icon.png' %}" alt="LinkedIn"></a>
+            </div>
+            <p>© 2025 GHANANAND.IN. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9fb;
+            color: #333;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #4A90E2;
+            text-align: center;
+        }
+        form {
+            margin-bottom: 30px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 15px 0 5px;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        input:focus, select:focus, button:focus {
+            border-color: #4A90E2;
+            outline: none;
+        }
+        button {
+            background-color: #4A90E2;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #357ABD;
+        }
+        .message {
+            background-color: #e7f3fe;
+            color: #3178c6;
+            border: 1px solid #b8daff;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .slots-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .slot {
+            background-color: #f0f8ff;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid #dbe9ff;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .slot:hover {
+            background-color: #e3efff;
+        }
+        .slot label {
+            cursor: pointer;
+            display: block;
+        }
+        .no-slots {
+            text-align: center;
+            color: #666;
+            margin-top: 20px;
+        }
+        .space{
+            margin: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Book Your Appointment</h1>
+
+        <form method="GET" id="filterForm">
+            <label for="date">Select Date:</label>
+            <input type="date" name="date" id="date" min="{{ today }}" max="{{ max_date }}" required>
+
+            <label for="duration">Select Duration:</label>
+            <select name="duration" id="duration">
+                <option value="15">15 minutes</option>
+                <option value="30">30 minutes</option>
+                <option value="45">45 minutes</option>
+            </select>
+
+            <button type="submit">Check Available Slots</button>
+            <a href="{% url 'home' %}">Home Page</a>
+            
+        </form>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        {% if available_slots %}
+            <h2>Available Slots</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="slots-container" id="slots">
+                    {% for slot in available_slots %}
+                        <div class="slot">
+                            <label>
+                                <input type="radio" name="slot" value="{{ slot.0 }}-{{ slot.1 }}" required>
+                                {{ slot.0 }} - {{ slot.1 }}
+                            </label>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="space"> </div>
+                <button type="submit">Book Appointment</button>
+            </form>
+        {% else %}
+            <p class="no-slots"></p>
+        {% endif %}
+    </div>
+</body>
+</html

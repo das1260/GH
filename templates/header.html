@@ -1,0 +1,49 @@
+
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GhanAnanD.in</title>
+ 
+    <link rel="icon" href="{% static 'images/GhanAnand-favicon-B954.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+       
+
+
+    </style>
+    <script src="/static/js/script.js" defer></script>
+    <style>
+        .hero {
+            background: url("{% static 'images/hero-backgroundv1.jpg' %}") no-repeat center center / cover;
+        }
+    </style>
+</head>
+
+{% load static %}
+<nav class="navbar">
+    <img src="{% static 'images/Ghananand_Logo_H9.png' %}">
+    <div class="hamburger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+     
+    </div>
+    <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'blog' %}">Blog</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#consultation">Consultation</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact">Contact</a></li>
+        {% if user1 %}
+        <li><a href="{% url 'profile' %}">Profile</a></li>
+        {% endif %}
+    </ul>
+</nav>
+
+<script>
+    function toggleMenu() {
+        document.querySelector('.navbar').classList.toggle('active');
+    }
+</script>

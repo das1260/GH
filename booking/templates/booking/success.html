@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Confirmed</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #2d3748;
+        }
+        p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: #4a5568;
+        }
+        a {
+            display: inline-block;
+            text-decoration: none;
+            padding: 12px 20px;
+            background-color: #4f46e5;
+            color: #fff;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        a:hover {
+            background-color: #4338ca;
+        }
+        .checkmark {
+            font-size: 3rem;
+            color: #10b981;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="checkmark">✔</div>
+        <h1>Appointment Successfully Booked!</h1>
+        <p>Your appointment has been confirmed. Thank you for booking with us!</p>
+        <a href="{% url 'home' %}">Home</a>
+    </div>
+</body>
+</html>

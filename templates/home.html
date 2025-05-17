@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GhanAnanD.in</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'images/GhanAnand-favicon-B954.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+       
+
+
+    </style>
+    <script src="/static/js/script.js" defer></script>
+</head>
+<body>
+    <style>
+        .hero {
+            background: url("{% static 'images/hero-backgroundv1.jpg' %}") no-repeat center center / cover;
+        }
+    </style>
+    
+    <!-- <header class="header">
+        
+            
+    </header> -->
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- Header Section -->
+        {%include 'header.html'%}
+
+
+
+        <div class="hero-content" role="contentinfo">
+            <h1>Discover the Timeless Wisdom of Indian Vedic Astrology</h1>
+            <p>
+                Personalized consultations to guide your life journey with precision and insight.
+            </p>
+            <a href="{% url 'book_appointment' %}" class="btn cta-btn" role="button" aria-label="Book your consultation">
+                Book Your Consultation
+            </a>
+        </div>
+    </section>
+    
+
+    <!-- Introduction to Vedic Astrology -->
+    <section class="intro">
+        <div class="container">
+            <h3>Introduction to Vedic Astrology</h3>
+            <p>Rooted in ancient wisdom, Vedic Astrology provides unparalleled insights into your life's path. Whether you're seeking clarity about your career, relationships, or personal growth, our services are designed to help you navigate life's challenges with confidence.</p>
+            <!-- <img src="natal-chart.jpg" alt="Natal Chart Illustration"> -->
+            
+            <img src="{% static 'images/natal-chart.jpg' %}" alt="Example Image">
+
+        </div>
+    </section>
+
+    <!-- Why Choose GHANANAND.IN? -->
+    <section class="why-choose">
+        <div class="container">
+            <h3>Why Choose GHANANAND.IN?</h3>
+            <ul>
+                <li>27+ years of expertise in Vedic Astrology</li>
+                <li>Personalized and confidential consultations</li>
+                <li>Global reach for premium clients</li>
+                <li>Detailed insights and actionable guidance</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h3>Testimonials</h3>
+            <div class="testimonial">
+                <p>"The insights I received were life-changing. Highly recommend!"</p>
+                <p><strong>- John Doe, New York</strong></p>
+            </div>
+            <div class="testimonial">
+                <p>"Accurate and insightful guidance that helped me make confident decisions."</p>
+                <p><strong>- Jane Smith, London</strong></p>
+            </div>
+            <a href="#" class="read-more">Read More</a>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    {% include 'footer.html' %}
+</body>
+</html>

@@ -1,0 +1,588 @@
+ 
+        body {
+            margin: 0;
+            font-family: 'Orbitron', sans-serif;
+            color: #ffffff;
+            background-color: #0b132b;
+        }      
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #e0aaff;
+        }
+        
+        .logo p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #b3b3b3;
+        }
+        
+        
+        
+        /* Hero Section */
+       
+        .hero {
+            
+            background: url("{% static 'images/natal-chart.jpg' %}") no-repeat center center / cover;
+            text-align: center;
+            padding: 0rem 0rem 5rem;
+            color: #ffffff;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1c2541;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .hero .cta-btn {
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            background-color: #e0aaff;
+            color: #1c2541;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .hero .cta-btn:hover {
+            background-color: #b388eb;
+        }
+        
+        /* Introduction Section */
+        .intro {
+            background-color: #3a506b;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+        
+        .intro h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #e0aaff;
+        }
+        
+        .intro p {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+       
+          
+        
+        .intro img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        
+        /* Booking Section */
+        .booking {
+            background-color: #5bc0be;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+        
+        .booking h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #1c2541;
+        }
+        
+        .booking-widget {
+            margin: 1rem 0;
+        }
+        
+        .booking-widget input,
+        .booking-widget select {
+            padding: 0.5rem;
+            margin-right: 0.5rem;
+            border: 1px solid #1c2541;
+            border-radius: 5px;
+        }
+        
+        .booking-widget .reserve-btn {
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            background-color: #1c2541;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .booking-widget .reserve-btn:hover {
+            background-color: #0b132b;
+        }
+        
+        /* Why Choose Section */
+        .why-choose {
+            background-color: #1c2541;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+        
+        .why-choose h3 {
+            font-size: 2rem;
+            color: #e0aaff;
+            margin-bottom: 1rem;
+        }
+        
+        .why-choose ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .why-choose ul li {
+            margin: 0.5rem 0;
+            font-size: 1rem;
+            color: #b3b3b3;
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            background-color: #3a506b;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+        
+        .testimonials h3 {
+            font-size: 2rem;
+            color: #e0aaff;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial {
+            margin-bottom: 2rem;
+            color: #fff;
+        }
+        
+        .read-more {
+            color: #e0aaff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .read-more:hover {
+            color: #b388eb;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: #1c2541;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links ul li {
+            margin: 0 1rem;
+        }
+        
+        .footer-links ul li a {
+            text-decoration: none;
+            color: #b3b3b3;
+        }
+        
+        .contact-info p {
+            margin: 0.5rem 0;
+        }
+        
+        .social-media a img {
+            width: 30px;
+            margin: 0 0.5rem;
+        }
+        
+        .social-media a:hover img {
+            filter: brightness(1.2);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 10px 20px;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar ul {
+            margin-left: auto;
+        }
+
+        .navbar ul li {
+            margin-left: 20px;
+        }
+
+        .navbar ul li a {
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .navbar ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .navbar img {
+            height: 40px;
+            width: auto;
+        }
+
+        /* Styles for hamburger icon */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: rgb(0, 0, 0);
+            margin: 5px 0;
+        }
+
+        /* Hide menu items and show hamburger icon on small screens */
+        @media (max-width: 768px) {
+            .navbar ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 50px;
+                left: 0;
+                background-color: #ffffff;
+            }
+
+            .navbar ul li {
+                margin-left: 0;
+                padding: 10px;
+                text-align: center;
+                width: 100%;
+            }
+
+            .navbar img {
+                height: 30px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .navbar.active ul {
+                display: flex;
+            }
+
+            
+        }
+
+
+        form {
+            color:#2c3e50
+        }        
+
+
+
+
+/* Profile Form Styling */
+.profile_form {
+    width: 100%;
+    max-width: 600px;  /* Restrict the form width */
+    padding: 20px;  /* Add padding inside the form */
+    margin: 20px auto;  /* Add outer margin for spacing around the form */
+    background-color: rgba(255, 255, 255, 0.3);  /* White with low transparency (0.3) */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);  /* Frosted glass effect */
+    -webkit-backdrop-filter: blur(10px);  /* For Safari */
+    text-transform: capitalize;
+}
+
+.profile_form h1 {
+    text-align: center;
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 20px;  /* Add some space below the title */
+}
+
+.profile_form form {
+    margin-top: 20px;
+}
+
+.profile_form .form-group {
+    margin-bottom: 15px;
+}
+
+.profile_form .form-control {
+    border-radius: 5px;
+    padding: 10px;
+    width: 70%;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+}
+
+.profile_form .form-control:focus {
+    border-color: #66afe9;
+    box-shadow: 0 0 5px rgba(102, 175, 233, .6);
+}
+
+.profile_form button {
+    width: 70%;
+    padding: 12px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.profile_form button:hover {
+    background-color: #0056b3;
+}
+
+/* Optional: Adjust form labels */
+.profile_form label {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* Adjust spacing for text fields (inputs, selects, etc.) */
+.profile_form input,
+.profile_form select,
+.profile_form textarea {
+    margin-bottom: 15px;  /* Add margin between form fields */
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .profile_form {
+        padding: 15px;  /* Slightly reduce padding on smaller screens */
+        margin: 10px;  /* Reduce outer margin */
+    }
+
+    .profile_form h1 {
+        font-size: 1.5rem;  /* Smaller font size for header */
+        margin-bottom: 15px;
+    }
+
+    .profile_form button {
+        padding: 10px;  /* Smaller button padding */
+        font-size: 0.9rem;  /* Slightly smaller font size for buttons */
+    }
+
+    .profile_form .form-control {
+        font-size: 0.95rem;  /* Slightly smaller text size for form controls */
+    }
+}
+
+/* Extra Small Mobile Screens (under 480px) */
+@media (max-width: 480px) {
+    .profile_form {
+        padding: 10px;  /* Further reduce padding for very small screens */
+        margin: 5px;  /* Minimal margin for small screens */
+    }
+
+    .profile_form h1 {
+        font-size: 1.2rem;  /* Further reduce font size for very small screens */
+        margin-bottom: 10px;
+    }
+
+    .profile_form button {
+        padding: 8px;  /* Further reduce button padding */
+        font-size: 0.8rem;  /* Further reduce font size for buttons */
+    }
+
+    .profile_form .form-control {
+        font-size: 0.9rem;  /* Further reduce text size for inputs */
+    }
+}
+
+
+
+
+
+
+.bookings {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.bookings h1, .bookings h2 {
+    color: #2c3e50;
+}
+
+.bookings h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.bookings h2 {
+    margin-top: 30px;
+    font-size: 1.2em;
+}
+
+.bookings p.info {
+    color: #16a085;
+    font-weight: bold;
+}
+
+.bookings .error {
+    color: #e74c3c;
+    background-color: #f8d7da;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.bookings .booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.bookings .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.bookings label {
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.bookings input[type="datetime-local"],
+.bookings input[type="number"] {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.bookings input[type="datetime-local"]:focus,
+.bookings input[type="number"]:focus {
+    border-color: #3498db;
+}
+
+.bookings button.submit-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.bookings button.submit-btn:hover {
+    background-color: #2980b9;
+}
+
+.bookings .slot-list {
+    list-style: none;
+    padding: 0;
+}
+
+.bookings .slot-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bookings .slot-item strong.booked {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.bookings .slot-item strong.cancelled {
+    color: #2ecc71;
+    font-weight: bold;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    .bookings {
+        padding: 15px;
+    }
+
+    .bookings button.submit-btn {
+        width: 100%;
+    }
+}
+
+
+#calendar {
+    max-width: 1100px;
+    margin: 40px auto;
+    color: #2c3e50
+  }
+  
+  /* Modify text color of the calendar */
+  #calendar .fc-event-title {
+    color: black !important; /* Changes the event text color to black */
+  }
+  
+  /* Modify text color inside the calendar cells */
+  #calendar .fc-resource-cell,
+  #calendar .fc-daygrid-day-top,
+  #calendar .fc-daygrid-day-number {
+    color: black !important; /* Ensure text inside the calendar cells is black */
+  }
+  
+  /* Ensure the column width of 'fc-datagrid-cell-main' is auto-sized */
+  #calendar .fc-datagrid-cell-main {
+    width: auto !important;  /* Set column width to auto */
+    white-space: nowrap; /* Prevent text from breaking into multiple lines */
+  }
+  
+  /* Ensure the calendar's resource area header has the correct alignment */
+  #calendar .fc-resource-area-header {
+    white-space: nowrap;  /* Prevent header text from wrapping */
+  }
+  
+  #calendar .fc-datagrid-body.fc-scrollgrid-sync-table{
+    width: 100%;
+  }
+
+  .hero .bookings p {
+    color: black
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Payment</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+
+    <div class="bg-white shadow-lg rounded-2xl p-8 max-w-md w-full">
+        <h1 class="text-2xl font-bold text-gray-800 text-center mb-4">Complete Payment</h1>
+
+        <!-- Booking Details -->
+        <div class="bg-blue-50 p-4 rounded-lg mb-4">
+            <p class="text-gray-600"><strong>Booking Date:</strong> {{ selected_date }}</p>
+            <p class="text-gray-600"><strong>Time:</strong> {{ start_time }} - {{ end_time }}</p>
+            <p class="text-gray-600"><strong>Duration:</strong> {{ duration }} minutes</p>
+            <p class="text-gray-600"><strong>Booking Fee:</strong> ₹ {{ Booking_Fee }} </p>
+        </div>
+
+        <!-- Payment Button -->
+        <button id="rzp-button1" class="w-full bg-blue-600 text-white py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition duration-200">
+            Pay Now
+        </button>
+
+        <!-- Hidden Payment Form -->
+        <form id="razorpay-form" method="POST" action="{% url 'confirm_payment' %}" class="hidden">
+            {% csrf_token %}
+            <input type="hidden" name="razorpay_payment_id" id="razorpay_payment_id">
+            <input type="hidden" name="razorpay_order_id" value="{{ order_id }}">
+            <input type="hidden" name="selected_date" value="{{ selected_date }}">
+            <input type="hidden" name="start_time" value="{{ start_time }}">
+            <input type="hidden" name="end_time" value="{{ end_time }}">
+            <input type="hidden" name="duration" value="{{ duration }}">
+            <input type="hidden" name="Booking_Fee" value="{{ Booking_Fee }}">
+        </form>
+    </div>
+
+    <script>
+        var options = {
+            "key": "{{ RAZORPAY_KEY_ID }}",
+            "amount": "{{ amount }}",
+            "currency": "INR",
+            "order_id": "{{ order_id }}",
+            "handler": function (response) {
+                document.getElementById('razorpay_payment_id').value = response.razorpay_payment_id;
+                document.getElementById('razorpay-form').submit();
+            }
+        };
+
+        var rzp1 = new Razorpay(options);
+        document.getElementById('rzp-button1').onclick = function (e) {
+            rzp1.open();
+            e.preventDefault();
+        }
+    </script>
+
+</body>
+</html>
