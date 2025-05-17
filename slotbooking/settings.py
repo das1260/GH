@@ -14,6 +14,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 load_dotenv('/home/7894008684das/GH/.env')
+load_dotenv()
 print("..........................hiiii.............................................")
 print(os.getenv('environment'))
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
