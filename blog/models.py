@@ -11,7 +11,7 @@ class Post(models.Model):
     postname = models.CharField(max_length=600)
     category = models.CharField(max_length=600)
     image = models.ImageField(upload_to='media/images/posts',blank=True,null=True)
-    content = models.CharField(max_length=100000)
+    content = models.CharField(max_length=21844)
     time = models.CharField(default=time,max_length=100, blank=True)
     likes = models.IntegerField(null=True,blank=True,default=0)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
