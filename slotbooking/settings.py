@@ -11,11 +11,11 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
 from pathlib import Path
-import os
 from dotenv import load_dotenv
 
-load_dotenv()
-
+load_dotenv('/home/7894008684das/GH/.env')
+print("..........................hiiii.............................................")
+print(os.getenv('environment'))
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'users',
     'booking',
     'blog',
-    
+
 ]
 
 MIDDLEWARE = [
@@ -91,14 +91,14 @@ if os.getenv('environment') == 'Prod':
             'NAME': os.getenv('DATABASE_NAME'),
             'USER': os.getenv('DATABASE_USER'),
             'PASSWORD': os.getenv('DATABASE_PASSWORD'),
-            'HOST': os.getenv('DATABASE_HOST', 'localhost'),
+            'HOST': os.getenv('DATABASE_HOST'),
             'PORT': os.getenv('DATABASE_PORT', '3306'),
             'OPTIONS': {
                 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
             },
         }
     }
-    
+
 else:
     print("Not Prod")
     DATABASES = {
@@ -107,7 +107,7 @@ else:
         'NAME': BASE_DIR / os.getenv('DATABASE_NAME_local', 'db.sqlite3'),
         }}
 
-    
+
 
 
 
